@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
+import { API_BASE_URL } from "@/lib/config";
 
 export default function AddItemPage() {
   const router = useRouter();
@@ -51,7 +52,7 @@ export default function AddItemPage() {
         imageUrl: imageUrl.trim() || undefined,
       };
 
-      const response = await fetch("http://localhost:5000/api/resources", {
+      const response = await fetch(`${API_BASE_URL}/api/resources`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

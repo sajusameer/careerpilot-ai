@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
+import { API_BASE_URL } from "@/lib/config";
 
 interface ResumeAnalysis {
   overallScore: number;
@@ -78,7 +79,7 @@ export default function ResumeAnalyzerPage() {
     try {
       setIsLoadingHistory(true);
       setHistoryError("");
-      const response = await fetch("http://localhost:5000/api/resume/analyses", {
+      const response = await fetch(`${API_BASE_URL}/api/resume/analyses`, {
         credentials: "include",
       });
       const data = await response.json();
@@ -106,7 +107,7 @@ export default function ResumeAnalyzerPage() {
     try {
       setIsAnalyzing(true);
       setError("");
-      const res = await fetch(`http://localhost:5000/api/resume/analyses/${id}`, {
+      const res = await fetch(`${API_BASE_URL}/api/resume/analyses/${id}`, {
         credentials: "include",
       });
       const data = await res.json();
@@ -138,7 +139,7 @@ export default function ResumeAnalyzerPage() {
         if (textContent.length < 50) {
           throw new Error("Resume text is too short. Please provide at least 50 characters of content.");
         }
-        response = await fetch("http://localhost:5000/api/resume/analyze", {
+        response = await fetch(`${API_BASE_URL}/api/resume/analyze`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -158,7 +159,7 @@ export default function ResumeAnalyzerPage() {
         }
         const formData = new FormData();
         formData.append("file", pdfFile);
-        response = await fetch("http://localhost:5000/api/resume/analyze", {
+        response = await fetch(`${API_BASE_URL}/api/resume/analyze`, {
           method: "POST",
           body: formData,
           credentials: "include",
@@ -176,7 +177,7 @@ export default function ResumeAnalyzerPage() {
         }
         const formData = new FormData();
         formData.append("file", imageFile);
-        response = await fetch("http://localhost:5000/api/resume/analyze", {
+        response = await fetch(`${API_BASE_URL}/api/resume/analyze`, {
           method: "POST",
           body: formData,
           credentials: "include",
@@ -192,7 +193,7 @@ export default function ResumeAnalyzerPage() {
         } catch (_) {
           throw new Error("Invalid URL format. Please include http:// or https://");
         }
-        response = await fetch("http://localhost:5000/api/resume/analyze", {
+        response = await fetch(`${API_BASE_URL}/api/resume/analyze`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

@@ -4,6 +4,7 @@ import React, { useEffect, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
+import { API_BASE_URL } from "@/lib/config";
 
 interface CareerPath {
   pathTitle: string;
@@ -67,7 +68,7 @@ function CareerRecommendationsContent() {
     if (session && resumeAnalysisId) {
       const fetchResumeContext = async () => {
         try {
-          const res = await fetch(`http://localhost:5000/api/resume/analyses/${resumeAnalysisId}`, {
+          const res = await fetch(`${API_BASE_URL}/api/resume/analyses/${resumeAnalysisId}`, {
             credentials: "include",
           });
           const result = await res.json();
@@ -124,7 +125,7 @@ function CareerRecommendationsContent() {
     const interests = interestsInput.split(",").map((s) => s.trim()).filter(Boolean);
 
     try {
-      const response = await fetch("http://localhost:5000/api/career/recommend", {
+      const response = await fetch(`${API_BASE_URL}/api/career/recommend`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

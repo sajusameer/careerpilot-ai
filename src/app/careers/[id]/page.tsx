@@ -2,6 +2,7 @@
 
 import React, { use, useEffect, useState } from "react";
 import Link from "next/link";
+import { API_BASE_URL } from "@/lib/config";
 
 interface CareerResource {
   _id: string;
@@ -32,7 +33,7 @@ export default function CareerDetailPage({
         setIsLoading(true);
         setError("");
         
-        const response = await fetch(`http://localhost:5000/api/resources/${id}`);
+        const response = await fetch(`${API_BASE_URL}/api/resources/${id}`);
         const data = await response.json();
         
         if (!response.ok || !data.success) {

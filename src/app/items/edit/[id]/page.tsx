@@ -4,6 +4,7 @@ import React, { use, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
+import { API_BASE_URL } from "@/lib/config";
 
 export default function EditItemPage({
   params,
@@ -43,7 +44,7 @@ export default function EditItemPage({
         setIsLoading(true);
         setError("");
         
-        const response = await fetch(`http://localhost:5000/api/resources/${id}`, {
+        const response = await fetch(`${API_BASE_URL}/api/resources/${id}`, {
           credentials: "include",
         });
         const data = await response.json();
@@ -106,7 +107,7 @@ export default function EditItemPage({
         imageUrl: imageUrl.trim() || undefined,
       };
 
-      const response = await fetch(`http://localhost:5000/api/resources/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/resources/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

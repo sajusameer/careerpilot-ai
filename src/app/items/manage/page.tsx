@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
+import { API_BASE_URL } from "@/lib/config";
 
 interface ResourceItem {
   _id: string;
@@ -37,7 +38,7 @@ export default function ManageItemsPage() {
     try {
       setIsLoading(true);
       setError("");
-      const response = await fetch("http://localhost:5000/api/resources", {
+      const response = await fetch(`${API_BASE_URL}/api/resources`, {
         credentials: "include",
       });
       const data = await response.json();
@@ -65,7 +66,7 @@ export default function ManageItemsPage() {
 
     try {
       setError("");
-      const response = await fetch(`http://localhost:5000/api/resources/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/resources/${id}`, {
         method: "DELETE",
         credentials: "include",
       });
