@@ -11,21 +11,6 @@ The official frontend repository for **CareerPilot AI**, an AI-powered agentic c
 
 ---
 
-## Screenshots
-
-### Home Page
-![Home Page](./screenshots/home.png)
-
-### User Dashboard
-![User Dashboard](./screenshots/dashboard.png)
-
-### AI Resume Analyzer
-![AI Resume Analyzer](./screenshots/resume-analyzer.png)
-
-### Career Recommendations
-![Career Recommendations](./screenshots/career-recommendations.png)
-
----
 
 ## Key Features
 
